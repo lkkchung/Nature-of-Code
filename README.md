@@ -1,3 +1,2 @@
 # Nature-of-Code
-Nature of Code JS sketches
-Blip Blop Bloop
+Nature of Code JS sketches from class
