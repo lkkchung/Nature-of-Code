@@ -7,8 +7,6 @@ class Mover {
 
     this.r = 80
 
-
-
     this.body = Bodies.rectangle(400, 20, this.r, this.r);
     World.add(engine.world, this.body);
   }
