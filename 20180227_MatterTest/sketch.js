@@ -8,38 +8,57 @@ const World = Matter.World;
 let mover;
 
 let attractor;
+let engine;
+let world;
+
+let bottom;
 
 function setup() {
+  let options = {
+
+  }
   createCanvas(640, 360);
+  engine = Engine.create();
+  world = engine.world;
+  // engine.run(engine);
+
   mover = new Mover();
   attractor = new Attractor();
-  engine = Engine.create();
+
+  let bOptions = {
+    isStatic: true
+  }
+  ground = Bodies.rectangle(width / 2, height, width, 1, bOptions);
+  World.add(world, ground);
+
 }
 
 function draw() {
   background(51);
 
-  let force = attractor.calculateAttraction(mover);
-  mover.applyForce(force);
-  mover.update();
+  Engine.run(engine);
 
-  attractor.display();
+  // let force = attractor.calculateAttraction(mover);
+  // mover.applyForce(force);
+  // mover.update();
+  //
+  // attractor.display();
   mover.display();
 }
 
-function mouseMoved() {
-  attractor.handleHover(mouseX, mouseY);
-}
-
-function mousePressed() {
-  attractor.handlePress(mouseX, mouseY);
-}
-
-function mouseDragged() {
-  attractor.handleHover(mouseX, mouseY);
-  attractor.handleDrag(mouseX, mouseY);
-}
-
-function mouseReleased() {
-  attractor.stopDragging();
-}
+// function mouseMoved() {
+//   attractor.handleHover(mouseX, mouseY);
+// }
+//
+// function mousePressed() {
+//   attractor.handlePress(mouseX, mouseY);
+// }
+//
+// function mouseDragged() {
+//   attractor.handleHover(mouseX, mouseY);
+//   attractor.handleDrag(mouseX, mouseY);
+// }
+//
+// function mouseReleased() {
+//   attractor.stopDragging();
+// }
