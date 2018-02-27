@@ -2,44 +2,35 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var Mover = function() {
-  this.position = createVector(400, 50);
-  this.velocity = createVector(1, 0);
-  this.acceleration = createVector(0, 0);
-  this.mass = 1;
-   
-  this.applyForce = function(force) {
-    var f = p5.Vector.div(force,this.mass);
-    this.acceleration.add(f);
-  };
-    
-  this.update = function() {
-    this.velocity.add(this.acceleration);
-    this.position.add(this.velocity);
-    this.acceleration.mult(0);
-  };
+class Mover {
+  constructor() {
 
-  this.display = function() {
+    this.r = 80
+
+    this.body = Bodies.rectangle(400, 20, this.r, this.r);
+    World.add(engine.world, this.body);
+  }
+
+  display() {
+    let pos = this.body.position;
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
-    ellipse(this.position.x, this.position.y, this.mass*16, this.mass*16);
-  };
-
-  this.checkEdges = function() {
-    if (this.position.x > width) {
-      this.position.x = width;
-      this.velocity.x *= -1;
-    } else if (this.position.x < 0) {
-      this.velocity.x *= -1;
-      this.position.x = 0;
-    }
-    if (this.position.y > height) {
-      this.velocity.y *= -1;
-      this.position.y = height;
-    }
-  };
-};
-
-
-
+    rectMode(CENTER);
+    rect(pos.x, pos.y, this.r, this.r);
+  }
+  //
+  // checkEdges() {
+  //   if (this.position.x > width) {
+  //     this.position.x = width;
+  //     this.velocity.x *= -1;
+  //   } else if (this.position.x < 0) {
+  //     this.velocity.x *= -1;
+  //     this.position.x = 0;
+  //   }
+  //   if (this.position.y > height) {
+  //     this.velocity.y *= -1;
+  //     this.position.y = height;
+  //   }
+  // }
+}
