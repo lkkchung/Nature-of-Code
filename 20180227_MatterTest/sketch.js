@@ -4,6 +4,7 @@
 const Engine = Matter.Engine;
 const Bodies = Matter.Bodies;
 const World = Matter.World;
+const Vector = Matter.Vector;
 
 let mover;
 
@@ -44,6 +45,11 @@ function draw() {
   //
   // attractor.display();
   mover.display();
+
+  if (mouseIsPressed) {
+    let wind = Vector.create(0, -1);
+    mover.applyForce(wind);
+  }
 }
 
 // function mouseMoved() {

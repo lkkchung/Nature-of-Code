@@ -7,8 +7,15 @@ class Mover {
 
     this.r = 80
 
-    this.body = Bodies.rectangle(400, 20, this.r, this.r);
+    let params = {
+      friction: 0.1,
+      restitution: 0.1
+    };
+
+    this.body = Bodies.rectangle(400, 20, this.r, this.r, params);
     World.add(engine.world, this.body);
+
+    console.log(this.body);
   }
 
   display() {
@@ -18,6 +25,13 @@ class Mover {
     fill(255, 127);
     rectMode(CENTER);
     rect(pos.x, pos.y, this.r, this.r);
+  }
+
+  applyForce(force) {
+
+    Bodies.applyForce(this.body, this.body.position, force);
+
+
   }
   //
   // checkEdges() {
