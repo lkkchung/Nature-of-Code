@@ -5,7 +5,7 @@ function setup() {
   //let color = colorPredictor(255, 100, 50);
 
   brain = new NeuralNetwork(3, 3, 2);
-
+  //                      (inputs, number of hidden nodes, outputs)
   let inputs = [1, 0.9, 0.9];
   let outputs = brain.predict(inputs);
 
