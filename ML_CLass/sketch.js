@@ -44,7 +44,11 @@ function draw() {
   let sI1 = sand[1];
   let sI2 = sand[2];
 
+<<<<<<< HEAD
   createCanvas(600, 200);
+=======
+  createCanvas(200, 600);
+>>>>>>> 05cb3a9bb7a01394b58eee49dd3e9f9f8b0ae4b8
   background (255);
 
   fill(0);
