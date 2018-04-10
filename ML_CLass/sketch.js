@@ -11,23 +11,26 @@ let ings2 = ["cheddar", "swiss cheese", "strawberry jelly", "mayonnaise",
   "vanilla ice cream", "arugula", "ketchup"
 ];
 
+let yum = ["delicious!", "yummy!", "yes, please!", "tasty!"];
+let gross = ["gross!", "no, thank you", "eww.", "disgusting.", "barf."];
+
 let delicious;
 let isTraining = 0;
-let indices = [0, 1, 2, 3, 4, 5, 6, 7];
+let indices = [0, 1, 2, 3, 4, 5, 6];
 let bLike;
 let bDislike;
 let sandwichGo = true;
 let sand;
 
 function setup() {
-  brain = new NeuralNetwork(3, 6, 3);
+  brain = new NeuralNetwork(3, 6, 2);
 
-  bLike = createButton('👍');
+  bLike = createButton(random(yum));
   bLike.position(20, 150);
   bLike.mousePressed(isDelicious);
 
-  bDislike = createButton('👎');
-  bDislike.position(100, 150);
+  bDislike = createButton(random(gross));
+  bDislike.position(150, 150);
   bDislike.mousePressed(notDelicious);
 
 }
@@ -41,8 +44,12 @@ function draw() {
   let sI1 = sand[1];
   let sI2 = sand[2];
 
-  createCanvas(600, 600);
-  background (0);
+  createCanvas(600, 200);
+  background (255);
+
+  fill(0);
+
+
   if(isTraining < 10){
 
     text("Do you like?", 20, 20);
@@ -55,11 +62,11 @@ function draw() {
       text("I don't recommend this sandwich for you", 20, 20);
     }
   }
-  
-  text(20, 40, bases[sB]);
-  text(20, 60, ings1[sI1]);
-  text(20, 80, ings2[sI2]);
-  text(20, 100, bases[sB]);
+
+  text(bases[sB], 20, 40);
+  text(ings1[sI1], 20, 60);
+  text(ings2[sI2], 20, 80);
+  text(bases[sB], 20, 100);
 
 }
 
