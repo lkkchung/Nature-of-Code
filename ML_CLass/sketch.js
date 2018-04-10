@@ -1,3 +1,54 @@
+let brain;
+
+let bases = ["kaiser roll", "brioche bun", "wonder bread", "cookie",
+  "focaccia", "hero", "whole weat bread"
+];
+
+let ings1 = ["ham", "roast beef", "peanut butter", "bologna", "chocolate ice cream",
+  "hamburger", "veggie burger"
+];
+let ings2 = ["cheddar", "swiss cheese", "strawberry jelly", "mayonnaise",
+  "vanilla ice cream", "arugula", "ketchup"
+];
+
+let delicious;
+
+function setup() {
+  brain = new NeuralNetwork(3, 6, 3);
+
+}
+
+function draw() {
+  createCanvas(600, 600);
+
+  let indices = [0, 1, 2, 3, 4, 5, 6, 7];
+
+  let sB = random(indices);
+  let sI1 = random(indices);
+  let sI2 = random(indices);
+
+
+
+  let inputs = [sB / base.length, sI1 / 255, sI2 / 255];
+
+  brain.train(inputs, targets);
+}
+
+function sandwichPrefs() {
+  let indices = [0, 1, 2, 3, 4, 5, 6, 7];
+
+  let sB = random(indices);
+  let sI1 = random(indices);
+  let sI2 = random(indices);
+
+  let inputs = [sB / base.length, sI1 / 255, sI2 / 255];
+
+  brain.train(inputs, targets);
+}
+
+
+
+
 // Daniel Shiffman
 // http://codingtra.in
 
@@ -8,19 +59,9 @@
 // https://youtu.be/KO7W0Qq8yUE
 // https://youtu.be/iN3WAko2rL8
 
-// pictures found on unsplash.com  
+// pictures found on unsplash.com
 // Photo by Michael Spain on Unsplash
 // Photo by Felix Russell-Saw on Unsplash
-
-let r, g, b;
-let brain;
-let pic1;
-let pic2;
-
-let which = "black";
-
-let wButton;
-let bButton;
 
 // function pickColor() {
 //   r = random(255);
@@ -29,21 +70,13 @@ let bButton;
 //   redraw();
 // }
 
-function preload(){
-  pic1 = loadImage("michael-spain-118388-unsplash.jpg");
-  pic2 = loadImage("felix-russell-saw-609919-unsplash.jpg");
-
-  pic1.loadPixels();
-  pic2.loadPixels();
-}
-
 function setup() {
   createCanvas(600, 300);
   noLoop();
   brain = new NeuralNetwork(pic1.pixels.length, 3, 3);
 
-  for (let i = 0; i < pic1.height; i ++) {
-    for (let j = 0; j < pic1.width; j ++){
+  for (let i = 0; i < pic1.height; i++) {
+    for (let j = 0; j < pic1.width; j++) {
       let offset = int(((i * pic1.width) + j) * 4);
       let r = pic1.pixels[this.offset];
       let g = pic1.pixels[this.offset + 1];
@@ -67,7 +100,7 @@ function mousePressed() {
     targets = [1, 0];
   }
   let inputs = [r / 255, g / 255, b / 255];
-  
+
   brain.train(inputs, targets);
 
 
