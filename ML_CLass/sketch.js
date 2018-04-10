@@ -15,12 +15,13 @@ let yum = ["delicious!", "yummy!", "yes, please!", "tasty!"];
 let gross = ["gross!", "no, thank you", "eww.", "disgusting.", "barf."];
 
 let delicious;
-let isTraining = 0;
+let round = 0;
 let indices = [0, 1, 2, 3, 4, 5, 6];
 let bLike;
 let bDislike;
 let sandwichGo = true;
 let sand;
+let continuing = false;
 
 function setup() {
   brain = new NeuralNetwork(3, 6, 2);
@@ -36,27 +37,31 @@ function setup() {
 }
 
 function draw() {
-  if (sandwichGo == true){
+  if (sandwichGo == true) {
     sand = makeSandwich();
   }
-  
+
   let sB = sand[0];
   let sI1 = sand[1];
   let sI2 = sand[2];
 
   createCanvas(600, 200);
-  background (255);
+  background(255);
 
   fill(0);
 
 
-  if(isTraining < 10){
+  if (round < 10) {
 
-    text("Do you like?", 20, 20);
+    let tCount = round + 1;
+    text("Does this sandwich sound delicious?" + " (" + tCount + "/10)", 20, 20);
 
   } else {
-    let sandRec = sandwichPredictor();
-    if (sandRec == true){
+    let sandRec
+    if (continuing == true) {
+      sandRec = sandwichPredictor();
+    }
+    if (sandRec == true) {
       text("I recommend this sandwich for you", 20, 20);
     } else {
       text("I don't recommend this sandwich for you", 20, 20);
@@ -70,7 +75,7 @@ function draw() {
 
 }
 
-function makeSandwich(){
+function makeSandwich() {
   let sB = random(indices);
   let sI1 = random(indices);
   let sI2 = random(indices);
@@ -82,7 +87,7 @@ function makeSandwich(){
 
 function sandwichPrefs(_t) {
   let targets;
-  if (_t == true){
+  if (_t == true) {
     targets = [0, 1];
   } else {
     targets = [1, 0];
@@ -99,8 +104,10 @@ function sandwichPrefs(_t) {
 
 function sandwichPredictor() {
   let trySand = brain.predict(sand);
+  console.log(trySand);
+  continuing = false;
 
-  if (trySand[1] > trySand[0]){
+  if (trySand[1] > trySand[0]) {
     return true;
   } else {
     return false;
@@ -110,15 +117,15 @@ function sandwichPredictor() {
 function isDelicious() {
   delicious = true;
   sandwichGo = true;
+  continuing = true;
   sandwichPrefs(delicious);
-  isTraining++;
+  round++;
 }
 
 function notDelicious() {
   delicious = false;
   sandwichGo = true;
+  continuing = true;
   sandwichPrefs(delicious);
-  isTraining++;
+  round++;
 }
-
-
