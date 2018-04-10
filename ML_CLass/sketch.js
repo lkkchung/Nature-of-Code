@@ -1,7 +1,7 @@
 let brain;
 
 let bases = ["kaiser roll", "brioche bun", "wonder bread", "cookie",
-  "focaccia", "hero", "whole weat bread"
+  "focaccia", "hero", "whole wheat bread"
 ];
 
 let ings1 = ["ham", "roast beef", "peanut butter", "bologna", "chocolate ice cream",
