@@ -12,38 +12,70 @@ let ings2 = ["cheddar", "swiss cheese", "strawberry jelly", "mayonnaise",
 ];
 
 let delicious;
+let isTraining = true;
+let indices = [0, 1, 2, 3, 4, 5, 6, 7];
+let bLike;
+let bDislike;
 
 function setup() {
   brain = new NeuralNetwork(3, 6, 3);
+
+  bLike = createButton('👍');
+  bLike.position(20, 150);
+  bLike.mousePressed(isDelicious);
+
+  bDislike = createButton('👎');
+  bDislike.position(100, 150);
+  bDislike.mousePressed(notDelicious);
 
 }
 
 function draw() {
   createCanvas(600, 600);
-
-  let indices = [0, 1, 2, 3, 4, 5, 6, 7];
-
   let sB = random(indices);
   let sI1 = random(indices);
   let sI2 = random(indices);
 
+  text("Is this delicious?", 20, 20);
+
+  text(20, 40, bases[sB]);
+  text(20, 60, ings1[sI1]);
+  text(20, 80, ings2[sI2]);
 
 
-  let inputs = [sB / base.length, sI1 / 255, sI2 / 255];
+  if (isTraining == true) {
+    sandwichPrefs(sB, sI1, sI2);
+  } else {
+    sandwichPredictor();
+  }
 
-  brain.train(inputs, targets);
 }
 
 function sandwichPrefs() {
-  let indices = [0, 1, 2, 3, 4, 5, 6, 7];
 
-  let sB = random(indices);
-  let sI1 = random(indices);
-  let sI2 = random(indices);
+  for (let i = 0; i < 10; i++) {
+    let sB = random(indices);
+    let sI1 = random(indices);
+    let sI2 = random(indices);
 
-  let inputs = [sB / base.length, sI1 / 255, sI2 / 255];
+    let inputs = [sB / bases.length, sI1 / ings1.length, sI2 / ings2.length];
 
-  brain.train(inputs, targets);
+    brain.train(inputs, targets);
+  }
+}
+
+function sandwichPredictor() {
+
+}
+
+function isDelicious() {
+  delicious == true;
+  sandwichPrefs(true);
+}
+
+function notDelicious() {
+  delicious == false;
+  sandwichPrefs(false);
 }
 
 
