@@ -68,7 +68,7 @@ function makeSandwich(){
   let sI1 = random(indices);
   let sI2 = random(indices);
 
-  sandwichGo == false;
+  sandwichGo = false;
 
   return [sB, sI1, sI2];
 }
@@ -101,15 +101,15 @@ function sandwichPredictor() {
 }
 
 function isDelicious() {
-  delicious == true;
-  sandwichGo == true;
+  delicious = true;
+  sandwichGo = true;
   sandwichPrefs(delicious);
   isTraining++;
 }
 
 function notDelicious() {
-  delicious == false;
-  sandwichGo == true;
+  delicious = false;
+  sandwichGo = true;
   sandwichPrefs(delicious);
   isTraining++;
 }
