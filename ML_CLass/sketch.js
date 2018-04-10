@@ -50,7 +50,7 @@ function draw() {
   let sI2 = sand[2];
 
   createCanvas(600, 200);
-  background(255);
+  background(240);
 
   fill(0);
 
