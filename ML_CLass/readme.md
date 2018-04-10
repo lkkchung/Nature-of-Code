@@ -1,1 +1,1 @@
-In class assignment exercise to create a Machine Learning sketch
+Adapted machine learning in-class exercise to be my new sandwich predictor. Functionality is debatable.
