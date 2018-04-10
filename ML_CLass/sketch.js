@@ -22,6 +22,7 @@ let bDislike;
 let sandwichGo = true;
 let sand;
 let continuing = false;
+let trainingRounds = 10;
 
 function setup() {
   brain = new NeuralNetwork(3, 6, 2);
@@ -39,6 +40,9 @@ function setup() {
 function draw() {
   if (sandwichGo == true) {
     sand = makeSandwich();
+
+    bLike.html(random(yum));
+    bDislike.html(random(gross));
   }
 
   let sB = sand[0];
@@ -51,7 +55,7 @@ function draw() {
   fill(0);
 
 
-  if (round < 10) {
+  if (round < trainingRounds) {
 
     let tCount = round + 1;
     text("Does this sandwich sound delicious?" + " (" + tCount + "/10)", 20, 20);
